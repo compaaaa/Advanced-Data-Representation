@@ -181,3 +181,38 @@ void to_sign_magnitude(int32_t n, char *out){
     }
     out[32] = '\0';
 }
+void to_ones_complement(int32_t n, char *out){
+    // Check if number is positive or negative
+    if (n>=0){
+        // For positive numbers
+        for (int i = 31; i >= 0; i--){
+            if ((n >> i) & 1){
+                out[31-i] = '1';
+            } else {
+                out[31-i] = '0';
+            }
+        }
+    } else {
+        // For negative numbers
+        int32_t mag = abs(n);
+        char pos_bin[33];
+
+        for (int i = 31; i >= 0; i--){
+            if ((mag >> i) & 1){
+                pos_bin[31-i] = '1';
+            } else {
+                pos_bin[31-i] = '0';
+            }
+        }
+        pos_bin[32] = '\0';
+        // Flip bits
+        for (int i = 0; i < 32; i++){
+            if (pos_bin[i] == '0'){
+                out[i] = '1';
+            } else {
+                out[i] = '0';
+            }
+        }
+    }
+    out[32] = '\0'; // Add end null terminator
+}
