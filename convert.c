@@ -95,3 +95,68 @@ void oct_to_hex(const char *oct, char *out){
         }
     }
 }
+void hex_to_bin(const char *hex, char *out){
+    out[0] = '\0';
+
+    for (int i = 0; hex[i] != '\0'; i++){
+        switch (hex[i]){
+            case '0':
+                strcat(out, "0000");
+                break;
+            case '1':
+                strcat(out, "0001");
+                break;
+            case '2':
+                strcat(out, "0010");
+                break;
+            case '3':
+                strcat(out, "0011");
+                break;
+            case '4':
+                strcat(out, "0100");
+                break;
+            case '5':
+                strcat(out, "0101");
+                break;
+            case '6':
+                strcat(out, "0110");
+                break;
+            case '7':
+                strcat(out, "0111");
+                break;
+            case '8':
+                strcat(out, "1000");
+                break;
+            case '9':
+                strcat(out, "1001");
+                break;
+            case 'a':
+            case 'A':
+                strcat(out, "1010");
+                break;
+            case 'b':
+            case 'B':
+                strcat(out, "1011");
+                break;
+            case 'c':
+            case 'C':
+                strcat(out, "1100");
+                break;
+            case 'd':
+            case 'D':
+                strcat(out, "1101");
+                break;
+            case 'e':
+            case 'E':
+                strcat(out, "1110");
+                break;
+            case 'f':
+            case 'F':
+                strcat(out, "1111");
+                break;
+            default:
+                strcat(out, "invalid");
+                break;
+        }
+    }
+}
