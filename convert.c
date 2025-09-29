@@ -95,6 +95,11 @@ void oct_to_hex(const char *oct, char *out){
             strcat(out, "F");
         }
     }
+    // Check for leading 0
+    if (out[0] == '0' && strlen(out) > 1){
+        memmove(out, out + 1, strlen(out)); // Overwrites '0'
+    }
+    
 }
 void hex_to_bin(const char *hex, char *out){
     out[0] = '\0';
