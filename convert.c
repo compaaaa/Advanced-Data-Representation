@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void oct_to_bin(const char *oct, char *out){
     out[0]='\0'; // Initialize output string
@@ -97,7 +98,7 @@ void oct_to_hex(const char *oct, char *out){
 }
 void hex_to_bin(const char *hex, char *out){
     out[0] = '\0';
-
+    // Convert from hex digit to 4 bit binary
     for (int i = 0; hex[i] != '\0'; i++){
         switch (hex[i]){
             case '0':
@@ -159,4 +160,24 @@ void hex_to_bin(const char *hex, char *out){
                 break;
         }
     }
+}
+void to_sign_magnitude(int32_t n, char *out){
+    int32_t mag = abs(n); // Get magnitude of number
+    
+    // Sign bit
+    if (n<0){
+        out[0] = '1';
+    } else {
+        out[0] = '0';
+    }
+
+    // Fill remaining 31 bits
+    for (int i = 30; i >= 0; i--){
+        if ((mag >> i) & 1){
+            out[31-i] = '1';
+        } else {
+            out[31-i] = '0';
+        }
+    }
+    out[32] = '\0';
 }
