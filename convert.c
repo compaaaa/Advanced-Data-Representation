@@ -216,3 +216,16 @@ void to_ones_complement(int32_t n, char *out){
     }
     out[32] = '\0'; // Add end null terminator
 }
+void to_twos_complement(int32_t n, char *out){
+    uint32_t bit_pattern = (uint32_t)n; // Cast signed int to unsigned int
+
+    // Bit extraction loop for bit pattern
+    for (int i = 31; i >= 0; i--){
+        if ((bit_pattern >> i) & 1){
+            out[31-i] = '1';
+        } else {
+            out[31-i] = '0';
+        } 
+    }
+    out[32] = '\0'; // Add end null terminator
+}
